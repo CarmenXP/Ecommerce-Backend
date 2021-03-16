@@ -20,6 +20,19 @@ Router.post('/', function(request, response){
     });
 });
 
+Router.get('/', function (request, response) {
+    UserModel.find()
+        .then(function (documents) {
+          response.json({ data: documents });
+        })
+        .catch(function (error) {
+          response.status(400).json({
+            message: error.message,
+            code: "Users_fetch"
+          });
+        })
+    });
+
 Router.get('/me/products', SessionMiddleware, function(request, response){
     const {id} = request.user;
 
