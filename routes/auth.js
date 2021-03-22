@@ -4,8 +4,8 @@ const Router= express.Router();
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
 
-Router.post('/', function(resquest, response){
-    const{email, password} = resquest.body;
+Router.post('/', function(request, response){
+    const{email, password} = request.body;
 
     UserModel.findOne({email})
         .then(function(document){
@@ -19,7 +19,7 @@ Router.post('/', function(resquest, response){
                 const hash = md5(password);
 
                 if (hash=== document.password){
-                    const toke = jwt.sign({id: document._id.toString()}, 'SECRET');
+                    const token = jwt.sign({id: document._id.toString()}, 'SECRET');
                     response.json({data: {token}});
                 } else {
                     response.status(401).json({

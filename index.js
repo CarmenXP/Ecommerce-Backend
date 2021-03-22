@@ -16,7 +16,7 @@ app.use(cors({origin: '*'}));
 
 app.use('/products', ProductsRoutes);
 app.use('/user', UserRoutes);
-app.use('/aut', AuthRoutes);
+app.use('/auth', AuthRoutes);
 
 
 
